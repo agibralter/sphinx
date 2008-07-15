@@ -1,0 +1,14 @@
+*.o
+.deps
+a.out.dSYM
+config.log
+config.status
+config/*
+Makefile
+sphinx.conf.dist
+src/indexer
+src/libsphinx.a
+src/search
+src/searchd
+src/spelldump
+src/tests

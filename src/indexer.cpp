@@ -418,12 +418,19 @@ bool SqlParamsConfigure ( CSphSourceParams_SQL & tParams, const CSphConfigSectio
 	LOC_CHECK ( hSource, "sql_user", "in source '%s'", sSourceName );
 	LOC_CHECK ( hSource, "sql_pass", "in source '%s'", sSourceName );
 	LOC_CHECK ( hSource, "sql_db", "in source '%s'", sSourceName );
+	// Don't need to require these.
+  // LOC_CHECK ( hSource, "sql_sslkey", "in source '%s'", sSourceName );
+  // LOC_CHECK ( hSource, "sql_sslcert", "in source '%s'", sSourceName );
+  // LOC_CHECK ( hSource, "sql_sslca", "in source '%s'", sSourceName );
 	LOC_CHECK ( hSource, "sql_query", "in source '%s'", sSourceName );
 
 	LOC_GETS ( tParams.m_sHost,				"sql_host" );
 	LOC_GETS ( tParams.m_sUser,				"sql_user" );
 	LOC_GETS ( tParams.m_sPass,				"sql_pass" );
-	LOC_GETS ( tParams.m_sDB,				"sql_db" );
+	LOC_GETS ( tParams.m_sDB,	  			"sql_db" );
+	LOC_GETS ( tParams.m_sSslkey,			"sql_sslkey" );
+	LOC_GETS ( tParams.m_sSslcert,  	"sql_sslcert" );
+	LOC_GETS ( tParams.m_sSslca,			"sql_sslca" );
 	LOC_GETI ( tParams.m_iPort,				"sql_port");
 
 	LOC_GETS ( tParams.m_sQuery,			"sql_query" );

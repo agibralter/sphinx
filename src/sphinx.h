@@ -1002,6 +1002,9 @@ struct CSphSourceParams_SQL
 	CSphString						m_sUser;
 	CSphString						m_sPass;
 	CSphString						m_sDB;
+  CSphString						m_sSslkey;
+	CSphString						m_sSslcert;
+	CSphString						m_sSslca;
 	int								m_iPort;
 
 	CSphSourceParams_SQL ();

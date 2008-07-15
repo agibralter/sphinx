@@ -15852,6 +15852,10 @@ bool CSphSource_SQL::Setup ( const CSphSourceParams_SQL & tParams )
 	LOC_FIX_NULL ( m_sUser );
 	LOC_FIX_NULL ( m_sPass );
 	LOC_FIX_NULL ( m_sDB );
+	LOC_FIX_NULL ( m_sSslkey );
+	LOC_FIX_NULL ( m_sSslcert );
+	LOC_FIX_NULL ( m_sSslca );
+
 	#undef LOC_FIX_NULL
 
 	#define LOC_FIX_QARRAY(_arg) \
@@ -16527,6 +16531,9 @@ const char * CSphSource_MySQL::SqlError ()
 bool CSphSource_MySQL::SqlConnect ()
 {
 	mysql_init ( &m_tMysqlDriver );
+	if ( !(m_tParams.m_sSslkey.IsEmpty()) ) {
+	  mysql_ssl_set( &m_tMysqlDriver, m_tParams.m_sSslkey.cstr(), m_tParams.m_sSslcert.cstr(), m_tParams.m_sSslca.cstr(), NULL, NULL );
+	}
 	return NULL!=mysql_real_connect ( &m_tMysqlDriver,
 		m_tParams.m_sHost.cstr(), m_tParams.m_sUser.cstr(), m_tParams.m_sPass.cstr(),
 		m_tParams.m_sDB.cstr(), m_tParams.m_iPort, m_sMysqlUsock.cstr(), m_iMysqlConnectFlags );
